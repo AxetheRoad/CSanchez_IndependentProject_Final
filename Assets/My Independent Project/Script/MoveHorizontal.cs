@@ -10,13 +10,13 @@ public class MoveHorizontal : MonoBehaviour
     private AudioSource auSlime;
     public AudioClip attackSound;
     public AudioClip dieSound;
-    private PlayerController playerCtrl;
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        playerCtrl = GameObject.Find("Player").GetComponent<PlayerController>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         animSlime = GetComponent<Animator>();
         auSlime = GetComponent<AudioSource>();
     }
@@ -25,7 +25,7 @@ public class MoveHorizontal : MonoBehaviour
     void Update()
     {
 
-        if (playerCtrl.gameOver == false & !enemyStop)
+        if (gameManager.gameActive == true)
         {
       
             transform.Translate(Vector3.left* Time.deltaTime * speed);
@@ -48,7 +48,7 @@ public class MoveHorizontal : MonoBehaviour
     public void destroy()
     {
         enemyStop = true;
-        auSlime.PlayOneShot(dieSound, 1.0f);
+        auSlime.PlayOneShot(dieSound, 0.7f);
         animSlime.SetBool("Die", true);
         Destroy(gameObject, 2f);
     }

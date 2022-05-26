@@ -10,29 +10,42 @@ public class FollowSpawn : MonoBehaviour
     private float spawnRange = 24.0f;
     private int enemyCount;
     private int waveNumber = 1;
+
+    private GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         SpawnWave(waveNumber);
     }
 
     private void Update()
     {
-        enemyCount = FindObjectsOfType<EnemyFollows>().Length;
-        if (enemyCount == 0)
+        if (gameManager.gameActive == true)
         {
-            waveNumber++;
-            SpawnWave(waveNumber);
+            enemyCount = FindObjectsOfType<EnemyFollows>().Length;
+            if (enemyCount == 0)
+            {
+                waveNumber++;
+                SpawnWave(waveNumber);
+            }
         }
+           
     }
     void SpawnWave(int enemyNum)
     {
-        Instantiate(powerUpPrefab, PowerSpawn(), powerUpPrefab.transform.rotation);
-
-        for (int i = 0; i < enemyNum; i++)
+        if(gameManager.gameActive == true)
         {
-            Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+          Instantiate(powerUpPrefab, PowerSpawn(), powerUpPrefab.transform.rotation);
+
+            for (int i = 0; i < enemyNum; i++)
+            {
+                Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+            }
         }
+        
+
+       
         // Vector3 genPos = GenerateSpawnPosition();
     }
     Vector3 GenerateSpawnPosition()

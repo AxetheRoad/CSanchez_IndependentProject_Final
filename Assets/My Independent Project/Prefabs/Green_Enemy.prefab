@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7533250843324255306}
   - component: {fileID: 7625944669192412478}
   - component: {fileID: 1729528837156592900}
-  - component: {fileID: 3854720127172255132}
   - component: {fileID: 6563473692281109297}
+  - component: {fileID: 3854720127172255132}
   - component: {fileID: 6269515461595205855}
   - component: {fileID: -6313210973545606079}
   - component: {fileID: -1887619216091173563}
@@ -70,18 +70,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4488fe7e052f1ce439741cf1b5c8cb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3854720127172255132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7531922682301611372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b651773b95d30814a8e0371e5d347360, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6563473692281109297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +86,20 @@ MonoBehaviour:
   enemyStop: 0
   attackSound: {fileID: 8300000, guid: 248f1f8e1810daa41a9f032271d810f9, type: 3}
   dieSound: {fileID: 8300000, guid: b610f7d5a063c5b49b262af2c5418151, type: 3}
+--- !u!114 &3854720127172255132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7531922682301611372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b651773b95d30814a8e0371e5d347360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  pointValue: -3
 --- !u!65 &6269515461595205855
 BoxCollider:
   m_ObjectHideFlags: 0

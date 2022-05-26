@@ -7,14 +7,14 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyPrefabs;
     private float zPositionRange = 24;
 
-    private PlayerController playerCtrl;
+    private GameManager gameManager;
  
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("SpawnRandomEnemy", 3.0f, 1.5f);
-        playerCtrl = GameObject.Find("Player").GetComponent<PlayerController>();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class SpawnManager : MonoBehaviour
         float RanZPos = Random.Range(-zPositionRange, zPositionRange);
         Vector3 RanPos = new Vector3(-24, 0,RanZPos);
 
-        if (playerCtrl.gameOver == false)
+        if (gameManager.gameActive == true)
         {
             Instantiate(enemyPrefabs, RanPos,
            enemyPrefabs.transform.rotation);

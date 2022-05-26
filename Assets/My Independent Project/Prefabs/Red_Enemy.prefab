@@ -193,9 +193,9 @@ GameObject:
   - component: {fileID: 1071494232602634119}
   - component: {fileID: 1117176033933939135}
   - component: {fileID: 7007606482352227731}
-  - component: {fileID: -8452385740658193243}
   - component: {fileID: 3773858592193954866}
   - component: {fileID: 6323955960104210349}
+  - component: {fileID: -8452385740658193243}
   - component: {fileID: 2485855049377869554}
   - component: {fileID: 250157477112542095}
   - component: {fileID: -2660524452188891002}
@@ -235,7 +235,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: c1a8c60183a3b7f449e681448258d646, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -253,19 +253,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4488fe7e052f1ce439741cf1b5c8cb17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-8452385740658193243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1068213132310119625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 600a6b88a6b9760419aacce7e3890bee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 50
 --- !u!114 &3773858592193954866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -295,6 +282,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 20
+  pointValue: -5
+--- !u!114 &-8452385740658193243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068213132310119625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 600a6b88a6b9760419aacce7e3890bee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
 --- !u!65 &2485855049377869554
 BoxCollider:
   m_ObjectHideFlags: 0

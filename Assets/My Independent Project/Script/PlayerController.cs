@@ -20,13 +20,16 @@ public class PlayerController : MonoBehaviour
     public GameObject powerUpIn;
     public float powerUpSpeed = 10.0f;
 
-    public bool gameOver = false;
     bool hasPowerUp = false;
 
     private AudioSource auPlayer;
     public AudioClip energySound;
     public AudioClip jumpSound;
     public AudioClip powerSound;
+
+    private Animator animPlayer;
+
+    private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +39,11 @@ public class PlayerController : MonoBehaviour
         //  enemyDamage.OnTriggerEnter(Collider other);
         auPlayer = GetComponent<AudioSource>();
         //Check playe is on the floor
+        animPlayer = GetComponent<Animator>();
+
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        
+
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -64,15 +72,43 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
         verticalInput = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
 
+        if (verticalInput > 0)
+        {
+            animPlayer.SetBool("IsWalking", true);
+            animPlayer.SetFloat("Speed", 1.0f);
 
+        }
+        else if (verticalInput < 0)
+        {
+            animPlayer.SetBool("IsWalking", true);
+            animPlayer.SetFloat("Speed", -1.0f);
+        }
+        else if (horizontalInput > 0)
+        {
+            animPlayer.SetBool("IsWalking", true);
+            animPlayer.SetFloat("Speed", 1.0f);
+        }
+        else if (horizontalInput < 0)
+        {
+            animPlayer.SetBool("IsWalking", true);
+            animPlayer.SetFloat("Speed", -1.0f);
+        }
+        else
+        {
+            animPlayer.SetBool("IsWalking", false);
+        }
         
-       
-    
+
+
+
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if(canJump)
@@ -80,7 +116,10 @@ public class PlayerController : MonoBehaviour
               
                 Jump();
                 canDoubleJump = true;
-                
+                //animPlayer.SetTrigger("Jump");
+               
+
+
 
             }
              else if (canDoubleJump)
@@ -101,9 +140,7 @@ public class PlayerController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            gameOver = true;
-            Debug.Log("FINAL");
-            Destroy(gameObject);
+            gameManager.GameOver();
         }
      
 
@@ -111,6 +148,8 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        animPlayer.SetTrigger("Damage");
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -118,6 +157,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("PowerUp"))
         {
             hasPowerUp = true;
+            animPlayer.SetBool("IsRunning", true);
             speed = powerUpSpeed + speed;
             Destroy(other.gameObject);
             StartCoroutine(PowerUpCountDown());
@@ -130,6 +170,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(8);
         hasPowerUp = false;
+        animPlayer.SetBool("IsRunning", false);
         speed = speed - powerUpSpeed;
         powerUpIn.SetActive(false);
     }
